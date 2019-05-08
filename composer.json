@@ -1,0 +1,36 @@
+{
+  "name": "marvinrabe/laravel-settings",
+  "description": "Store key-value settings in your Laravel application",
+  "license": "MIT",
+  "keywords": [
+    "laravel",
+    "eloquent",
+    "settings"
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "illuminate/support": ">=5.5.0",
+    "illuminate/database": ">=5.5.0"
+  },
+  "authors": [
+    {
+      "name": "Marvin Rabe",
+      "email": "marvin.rabe@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "MarvinRabe\\LaravelSettings\\": "src/"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "MarvinRabe\\LaravelSettings\\Providers\\ServiceProvider"
+      ]
+    }
+  }
+}
