@@ -14,7 +14,7 @@ class Setting
     /**
      * @var Option|EloquentBuilder|QueryBuilder|null
      */
-    protected $options;
+    protected $adapter;
 
     /**
      * @var array|null
@@ -32,11 +32,11 @@ class Setting
     protected $unsaved;
 
     /**
-     * @param Option $options
+     * @param StorageAdapter $adapter
      */
-    public function __construct(Option $options)
+    public function __construct(StorageAdapter $adapter)
     {
-        $this->options = $options;
+        $this->adapter = $adapter;
     }
 
     /**
@@ -55,7 +55,7 @@ class Setting
     protected function getData()
     {
         if (!$this->loaded) {
-            $this->data = $this->parseCollection($this->options->all());
+            $this->data = $this->parseCollection($this->adapter->all());
 
             $this->loaded = true;
         }
@@ -167,10 +167,10 @@ class Setting
             $data = Arr::dot($all);
 
             foreach ($data as $key => $value) {
-                $this->options->updateOrCreate(compact('key'), compact('key', 'value'));
+                $this->adapter->updateOrCreate(compact('key'), compact('key', 'value'));
             }
 
-            $this->options->whereNotIn('key', array_keys($data))->delete();
+            $this->adapter->whereNotIn('key', array_keys($data))->delete();
 
             $this->unsaved = false;
         }

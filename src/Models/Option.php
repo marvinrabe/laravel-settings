@@ -3,8 +3,10 @@
 namespace MarvinRabe\LaravelSettings\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use MarvinRabe\LaravelSettings\StorageAdapter;
 
-class Option extends Model {
+class Option extends Model implements StorageAdapter
+{
 
     public $timestamps = false;
 
